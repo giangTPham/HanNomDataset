@@ -1,0 +1,1 @@
+Image synthesis module, used to automatically generate Chinese character images from fonts. Sample examples of generated images are save at `img` folder. Font data (~400Mb) will be downloaded and placed in `dataset/imGen/fonts` if not found. 
