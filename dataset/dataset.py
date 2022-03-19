@@ -50,25 +50,7 @@ class BaseDataset(Dataset):
     def __getitem__(self, i):
         raise NotImplementedError
 
-class SimSiamDataset(BaseDataset):
-    '''
-    Dataset used in Simsiam experiment.
-    Return two different "views" of the same characters.
-    Two views are essentially generated from different fonts, with augmentation.
-    '''
-    def __init__(self, cfg, transform=None, one_font_only=False):
-        super().__init__(cfg, transform, one_font_only)
-
-    def __getitem__(self, i):
-        char_index = i % self.n_fonts
-        other_indx = char_index*self.n_fonts +  random.randint(0, self.n_fonts-1)
-        
-        x1 = self.gen_char_img(i)
-        x2 = self.gen_char_img(other_indx)
-        
-        return self.transform(x1), self.transform(x2)
-        
-class TripletDataset(BaseDataset):
+class HanNomDataset(BaseDataset):
     '''
     Dataset used in Triplet experiment.
     Return augmented images and their corresponding labels.
