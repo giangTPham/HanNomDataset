@@ -11,7 +11,7 @@
     },
     "train": {
         "epochs": 2,
-        "batch_size": 512,
+        "batch_size": 64,
         "lr": 0.05,
         "momentum": 0.9,
         "weight_decay": 0.0001,
