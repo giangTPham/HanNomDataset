@@ -6,6 +6,9 @@ from .cache import CacheImg
 import random
 import numpy as np
 
+TRAIN_SIZE = 6000
+TEST_SIZE = 200
+
 class BaseDataset(Dataset):
     '''
     Base class for creating dataset.
