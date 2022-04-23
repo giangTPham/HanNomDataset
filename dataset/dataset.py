@@ -55,9 +55,17 @@ class HanNomDataset(BaseDataset):
     Dataset used in Triplet experiment.
     Return augmented images and their corresponding labels.
     '''	
-    def __init__(self, cfg, transform=None, one_font_only=False):
+    def __init__(self, cfg, transform=None, one_font_only=False,train=True):
         super().__init__(cfg, transform, one_font_only)
         import numpy as np
+        if train:
+            self.allCharacters = self.allCharacters[:TRAIN_SIZE]
+            self.n_chars = len(self.allCharacters)
+            self.len = self.n_fonts * self.n_chars
+        else:
+            self.allCharacters = self.allCharacters[TRAIN_SIZE:TRAIN_SIZE+TEST_SIZE]
+            self.n_chars = len(self.allCharacters)
+            self.len = self.n_fonts * self.n_chars
         self.label_list = np.tile(np.arange(self.n_chars), self.n_fonts)
 
     def getlabel(self, i):
@@ -69,4 +77,3 @@ class HanNomDataset(BaseDataset):
         x = self.gen_char_img(i)
         
         return self.transform(x), char_index
- 
